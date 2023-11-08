@@ -8,9 +8,11 @@ runs:
   using: composite
   steps:
     - name: Check issue title
+      env:
+        ISSUE_TITLE: ${{ github.event.issue.title }}
       shell: bash
       run: |
-        if [[ "${{ inputs.issue-title }}" =~ ^octocat ]]; then
+        if [[ "$ISSUE_TITLE" =~ ^octocat ]]; then
           echo "Issue title starts with 'octocat'"
           exit 0
           else
